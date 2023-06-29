@@ -4,9 +4,9 @@ var cors = require("cors");
 require('dotenv').config();
 const bodyParser = require("body-parser");
 
-// const questionsRouter = require("./routes/questions");
-// const answersRouter = require("./routes/answers");
-// const userRouter = require("./routes/user");
+// const questionsRouter = require("./api/routes/questions");
+// const answersRouter = require("./api/routes/answers");
+const userRouter = require("./api/routes/user")
 
 const mongoose = require("mongoose");
 
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 // app.use(questionsRouter);
 // app.use(answersRouter);
-// app.use(userRouter);
+app.use(userRouter);
 
 mongoose
   .connect(process.env.MONGO_CONNECT)
