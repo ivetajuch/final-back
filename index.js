@@ -4,7 +4,7 @@ var cors = require("cors");
 require('dotenv').config();
 const bodyParser = require("body-parser");
 
-// const questionsRouter = require("./api/routes/questions");
+const questionsRouter = require("./api/routes/question");
 // const answersRouter = require("./api/routes/answers");
 const userRouter = require("./api/routes/user")
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// app.use(questionsRouter);
+app.use(questionsRouter);
 // app.use(answersRouter);
 app.use(userRouter);
 
