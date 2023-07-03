@@ -5,7 +5,7 @@ require('dotenv').config();
 const bodyParser = require("body-parser");
 
 const questionsRouter = require("./api/routes/question");
-// const answersRouter = require("./api/routes/answers");
+const answersRouter = require("./api/routes/answer");
 const userRouter = require("./api/routes/user")
 
 const mongoose = require("mongoose");
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 
 app.use(questionsRouter);
-// app.use(answersRouter);
+app.use(answersRouter);
 app.use(userRouter);
 
 mongoose

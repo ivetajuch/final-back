@@ -36,7 +36,33 @@ module.exports.GET_ALL_QUESTIONS = async (req, res) => {
     }
   };
 
+  module.exports.GET_QUESTION_BY_ID = async (req, res) => {
+    try {
+      const question = await questionModel.aggregate([
+        { $match: { id: req.params.id } },
+        { 
+          $lookup: {
+            from: 'answers', 
+            localField: 'answersId',
+            foreignField: 'id',
+            as: 'answers'
+          }
+        }
+      ]);
+      
+      if (question.length === 0) {
+        return res.status(404).json({ response: "Question not found" });
+      }
+  
+      res.status(200).json({ question: question[0] });
+    } catch (err) {
+      console.log("ERR", err);
+      res.status(500).json({ response: "ERROR, please try later" });
+    }
+  };
 
+
+  
   module.exports.DELETE_QUESTION = async (req, res) => {
     try {
       const question = await questionModel.deleteOne({ id: req.params.id });

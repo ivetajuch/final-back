@@ -5,9 +5,9 @@ const answerSchema = mongoose.Schema({
   text: {type: String, required: true, min: 5},
   likeNumber: { type: Number, required: false }, 
   },
-{
-  id: false
-}
+
+  {id: false }
+
 );
 
 module.exports = mongoose.model("Answer", answerSchema);

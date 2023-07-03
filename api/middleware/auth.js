@@ -1,12 +1,14 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
+  const token = req.headers.authorization;
 
-  if (!localStorage.jwtToken) {
-    return res.status(401).json({ response: "Auth failed" });
-  }
+  console.log(token);
+  // if (!localStorage.jwtToken) {
+  //   return res.status(401).json({ response: "Auth failed" });
+  // }
 
-  const token = localStorage.jwtToken;
+  // const token = localStorage.jwtToken;
 
 
   jwt.verify(token, process.env.JWT_PROTECT, (err, decoded) => {
@@ -18,3 +20,4 @@ module.exports = (req, res, next) => {
     }
   });
 };
+

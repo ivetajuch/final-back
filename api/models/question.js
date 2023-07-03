@@ -6,9 +6,8 @@ const questionSchema = mongoose.Schema({
   date: {type: String, required: true},
   answersId: { type: Array, required: false }, 
   },
-{
-  id: false
-}
+
+  {id: false },
 );
 
 module.exports = mongoose.model("Question", questionSchema);
