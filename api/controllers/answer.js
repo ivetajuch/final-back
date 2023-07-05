@@ -10,6 +10,13 @@ module.exports.INSERT_NEW_ANSWER = async (req, res) => {
     const newAnswer = new answer({
       id: uniqid(),
       text: req.body.answerText,
+      date: new Date().toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
       likeNumber: 0,
     });
 
@@ -30,3 +37,12 @@ module.exports.INSERT_NEW_ANSWER = async (req, res) => {
 };
 
 
+module.exports.DELETE_ANSWER = async (req, res) => {
+  try {
+    const question = await answerModel.deleteOne({ id: req.params.id });
+    res.status(200).json({ answer: question });
+  } catch (err) {
+    console.log("ERR", err);
+    res.status(500).json({ response: "ERROR, please try later" });
+  }
+};
